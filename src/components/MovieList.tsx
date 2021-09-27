@@ -7,7 +7,6 @@ interface IMovieListProps {
 }
 
 const MovieList = ({ movies } : IMovieListProps) => {
-    console.log(movies);
     return (
         <div className="wrapper">
             {movies.map((movie, index) => {
