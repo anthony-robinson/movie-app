@@ -32,6 +32,9 @@ const App  = () =>  {
     if(!term) {
       return setTag('YOU MIGHT LIKE');
     }
+    if(term.length < 2) {
+      return;
+    }
     let movieImages : string[] = [];
     (async() => {
       const response = await getMovies(term);
