@@ -10,7 +10,8 @@ export const getMovies = async(value : string) => {
             headers: {"Content-Type": "application/json"},
             params: {
                 "s": value,
-                "page": 1
+                "page": 1,
+                "type": "movie"
             }
         })
     } catch(err) {

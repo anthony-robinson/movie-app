@@ -1,15 +1,29 @@
-import React, { useRef } from 'react';
-import { Image } from 'antd';
+import React, { useState } from 'react';
+import { Image, Modal, Card } from 'antd';
+import { CSSTransition } from 'react-transition-group'
+import { IMovie } from '../Interfaces';
 
 interface IMovieProps {
-    link : string
+    movie : IMovie | undefined,
 }
 
-
-const Movie = ({ link } : IMovieProps) => {
+const Movie = ({ movie } : IMovieProps) => {
+    const [modalOpen, setModalOpen] = useState(false)
+    const { Meta }  = Card
     return (
-          <img className="movie-image" alt="example" src={link} />
-        // using antd : <Image width={200} src={link} />
+         <div>
+             <Image preview={false} onClick={() => setModalOpen(true)} className="movie-image" src={movie?.image} />
+             <Modal title={movie?.title} visible={modalOpen} onOk={() => setModalOpen(false)} onCancel={() => setModalOpen(false)}>
+                 <Card
+                    hoverable
+                    style={{ width: 240 }}
+                    cover={<img alt="example" src={movie?.image} />}
+                >
+                    <Meta description={movie?.plot || "N/A"} />
+                </Card>
+             </Modal>
+         </div>
+         
     );
 }
 
